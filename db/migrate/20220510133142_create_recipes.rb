@@ -6,8 +6,6 @@ class CreateRecipes < ActiveRecord::Migration[7.0]
       t.integer :prep_time
       t.float :ratings
       t.string :cuisine
-      t.string :category
-      t.string :author
       t.string :image
 
       t.timestamps

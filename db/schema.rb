@@ -10,9 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_10_133316) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_12_145458) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "authors", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_authors_on_name"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["title"], name: "index_categories_on_title"
+  end
+
+  create_table "ingredients", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "ingredients_recipes", id: false, force: :cascade do |t|
+    t.bigint "recipe_id"
+    t.bigint "ingredient_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ingredient_id"], name: "index_ingredients_recipes_on_ingredient_id"
+    t.index ["recipe_id"], name: "index_ingredients_recipes_on_recipe_id"
+  end
 
   create_table "recipes", force: :cascade do |t|
     t.string "title"
@@ -20,12 +49,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_10_133316) do
     t.integer "prep_time"
     t.float "ratings"
     t.string "cuisine"
-    t.string "category"
-    t.string "author"
     t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "ingredients", default: [], array: true
+    t.bigint "category_id"
+    t.bigint "author_id"
+    t.index ["author_id"], name: "index_recipes_on_author_id"
+    t.index ["category_id"], name: "index_recipes_on_category_id"
   end
 
+  add_foreign_key "recipes", "authors"
+  add_foreign_key "recipes", "categories"
 end
