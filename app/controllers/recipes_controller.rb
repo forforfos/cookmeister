@@ -8,6 +8,15 @@ class RecipesController < ApplicationController
     render json: @recipes
   end
 
+  # POST /recipes/search
+  def search
+    ingredients = params[:ingredients]
+
+    @recipes = Recipe.search ingredients
+
+    render json: @recipes
+  end
+
   # GET /recipes/1
   def show
     render json: @recipe
@@ -39,13 +48,14 @@ class RecipesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_recipe
-      @recipe = Recipe.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def recipe_params
-      params.require(:recipe).permit(:title, :cook_time, :prep_time, :ratings, :cuisine, :category, :author, :image)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_recipe
+    @recipe = Recipe.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def recipe_params
+    params.require(:recipe).permit(:title, :cook_time, :prep_time, :ratings, :cuisine, :category, :author, :image)
+  end
 end
