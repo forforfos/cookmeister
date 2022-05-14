@@ -2,4 +2,4 @@ development:
   url: http://localhost:3001
 
 production:
-  url: https://cooking-partner.herokuapp.com/
+  url: https://cooking-partner.herokuapp.com
