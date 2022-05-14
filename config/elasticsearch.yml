@@ -1,7 +1,7 @@
 development:
-  cloud_id: 'cookmeister:ZXVyb3BlLXdlc3QzLmdjcC5jbG91ZC5lcy5pbyRhYjUyNTlhYTM3Y2U0ZjZkOTJlOWY0ODU0MzhiOWY5OSRlZmEzMjBkYWIzMjU0MWFkOWIyZWE0NGM5YWNiMzA3NA=='
-  user: 'elastic'
-  password: 'S0t7zZMJbUGtZomHkol72EW4'
+  cloud_id: <%= Rails.application.credentials.es_cloud_id %>
+  user: <%= Rails.application.credentials.es_user %>
+  password: <%= Rails.application.credentials.es_pass %>
 
 test:
   host: localhost
