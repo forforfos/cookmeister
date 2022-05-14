@@ -2,13 +2,13 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: cookmeister
-  password: <%= ENV['COOKMEISTER_DATABASE_PASSWORD'] %>
   timeout: 5000
 
 development:
   <<: *default
   database: cookmeister_dev
+  username: cookmeister
+  password: <%= ENV['COOKMEISTER_DATABASE_PASSWORD'] %>
 
 test:
   <<: *default
@@ -16,4 +16,6 @@ test:
 
 production:
   <<: *default
-  database: cookmeister_prod
+  database: cookmeister_production
+  username: cookmeister
+  password: <%= ENV["COOKMEISTER_DATABASE_PASSWORD"] %>
