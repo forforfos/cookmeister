@@ -65,9 +65,8 @@ class Recipe < ApplicationRecord
     response = __elasticsearch__.search options
 
     Rails.logger.info "Elasticsearch query took: #{response.took}ms"
-    response.map do |record|
-      record._source
-    end
+
+    response.records
   end
 
   private
