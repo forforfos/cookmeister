@@ -12,9 +12,9 @@ begin
     password: settings['password']
   )
 
-  Rails.logger.info Elasticsearch::Model.client.info
+  Rails.logger.info "[#{Time.now.strftime('%d/%m/%Y %H:%M:%S')}] Successfully connected to Elasticsearch!"
 rescue => error
-  Rails.logger.error "[#{Time.now.strftime("%d/%m/%Y %H:%M:%S")}] Failed to connect to ElasticSearch with error: #{error}"
+  Rails.logger.error "[#{Time.now.strftime('%d/%m/%Y %H:%M:%S')}] Failed to connect to ElasticSearch with error: #{error}"
 end
 
 
