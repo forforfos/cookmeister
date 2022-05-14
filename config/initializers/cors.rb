@@ -5,9 +5,11 @@
 
 # Read more: https://github.com/cyu/rack-cors
 
+settings = YAML::load(ERB.new(Rails.root.join('config').join('frontend.yml').read).result)[Rails.env]
+
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins "http://localhost:3001"
+    origins "#{settings['url']}"
 
     resource "*",
       headers: :any,
