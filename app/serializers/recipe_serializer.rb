@@ -1,14 +1,8 @@
 class RecipeSerializer < ActiveModel::Serializer
-  attributes :id, :preping_time, :cooking_time, :image, :author, :category
+  attributes :id, :preping_time, :cooking_time, :image
   has_many :ingredients
-
-  def author
-    object.author.name
-  end
-
-  def category
-    object.category.title
-  end
+  belongs_to :author
+  belongs_to :category
 
   def cooking_time
     DurationFormatter.format_by_minutes object.cook_time
