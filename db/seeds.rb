@@ -8,7 +8,7 @@ recipes.each do |recipe|
 end
 categories.uniq!
 categories.each do |category|
-  Category.create!(category)
+  Category.create!(title: category)
 end
 
 authors = []
@@ -17,7 +17,7 @@ recipes.each do |recipe|
 end
 authors.uniq!
 authors.each do |author|
-  Author.create!(author)
+  Author.create!(name: author)
 end
 
 ingredients = []
@@ -27,14 +27,17 @@ recipes.each do |recipe|
   end
 end
 ingredients.uniq!
-ingredients.each do |author|
-  Ingredient.create!(ingredient)
+ingredients.each do |ingredient|
+  Ingredient.create!(name: ingredient)
 end
+
+p '*'*20
+p 'Ingredients saved!'
+p '*'*20
 
 recipes.each do |recipe|
   category = Category.find_by(title: recipe['category'])
   author = Author.find_by(name: recipe['author'])
-
   new_recipe = Recipe.new
   new_recipe.title = recipe['title']
   new_recipe.cook_time = recipe['cook_time']
@@ -43,7 +46,6 @@ recipes.each do |recipe|
   new_recipe.image = recipe['image']
   new_recipe.category = category
   new_recipe.author = author
-  new_recipe.save!
 
   ingredients = []
   recipe['ingredients'].each do |ingredient|
@@ -51,4 +53,5 @@ recipes.each do |recipe|
     ingredients << new_ingredient
   end
   new_recipe.ingredients = ingredients
+  new_recipe.save
 end
