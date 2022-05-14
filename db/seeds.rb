@@ -2,10 +2,38 @@ require 'json'
 
 recipes = JSON.parse(File.read("#{Rails.root}/db/recipes-en.json"))
 
-recipes.each_with_index do |recipe, index|
-  # Recipe.create(recipe)
-  category = Category.find_by(title: recipe['category']) || Category.create!(title: recipe['category'])
-  author = Author.find_by(name: recipe['author']) || Author.create!(name: recipe['author'])
+categories = []
+recipes.each do |recipe|
+  categories << recipe['category']
+end
+categories.uniq!
+categories.each do |category|
+  Category.create!(category)
+end
+
+authors = []
+recipes.each do |recipe|
+  authors << recipe['author']
+end
+authors.uniq!
+authors.each do |author|
+  Author.create!(author)
+end
+
+ingredients = []
+recipes.each do |recipe|
+  recipe['ingredients'].each do |ingredient|
+    ingredients << ingredient
+  end
+end
+ingredients.uniq!
+ingredients.each do |author|
+  Ingredient.create!(ingredient)
+end
+
+recipes.each do |recipe|
+  category = Category.find_by(title: recipe['category'])
+  author = Author.find_by(name: recipe['author'])
 
   new_recipe = Recipe.new
   new_recipe.title = recipe['title']
@@ -19,10 +47,8 @@ recipes.each_with_index do |recipe, index|
 
   ingredients = []
   recipe['ingredients'].each do |ingredient|
-    new_ingredient = Ingredient.find_by(name: ingredient) || Ingredient.create!(name: ingredient)
+    new_ingredient = Ingredient.find_by(name: ingredient)
     ingredients << new_ingredient
   end
   new_recipe.ingredients = ingredients
-
-  p "#{index.to_f / recipes.length}%"
 end
