@@ -78,7 +78,7 @@ class Recipe < ApplicationRecord
         match: {
           "ingredients.name": {
             query: ingredient,
-            fuzziness: 1
+            fuzziness: 'AUTO:5,8'
           }
         }
       }
