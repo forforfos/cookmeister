@@ -54,6 +54,7 @@ class Recipe < ApplicationRecord
 
   def self.search(ingredients)
     options = {
+      size: 24,
       query: {
         bool: {
           must: match_clauses(ingredients)
