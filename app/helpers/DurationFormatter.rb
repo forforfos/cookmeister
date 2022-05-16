@@ -18,7 +18,8 @@ module DurationFormatter
     minutes = minutes.modulo(60)
 
     hours_text = hours.nonzero? && "#{hours} #{hours_literal(hours)},"
-    minutes_text = "#{minutes} #{minutes_literal(minutes)}"
+    conjunction_text = hours.nonzero? && minutes.nonzero? ? ' and ' : ' '
+    minutes_text = "#{minutes}#{conjunction_text}#{minutes_literal(minutes)}"
 
     "#{hours_text} #{minutes_text}"
   end
