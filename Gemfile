@@ -40,7 +40,7 @@ gem "rack-cors"
 gem 'elasticsearch'
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
-
+gem 'activerecord-import'
 gem 'active_model_serializers'
 
 group :development, :test do
