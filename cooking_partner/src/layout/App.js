@@ -1,31 +1,22 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import styled from '@emotion/styled'
+import styled from "@emotion/styled";
 import SearchPage from "../pages/search";
 import ResultsPage from "../pages/results";
-import headerImage from "../assets/cheese.jpg"
 
-const Wrapper = styled('div')`
-    body {
-      margin: 0;
-      padding: 0;
-    }
-`
+const Wrapper = styled("div")`
+  margin: 0;
+  padding: 0;
+  font-family: "Mali", cursive;
 
-const HeaderImage = styled('div')`
-  width: 100%;
-  height: 400px;
-  background-image: url(${headerImage});
-  background-position: bottom;
-  background-size: cover;
+  & * {
+    font-family: "Mali", cursive;
+    box-sizing: border-box;
+  }
 `;
 
 const App = () => {
   return (
     <Wrapper>
-      <HeaderImage>
-        {/*<img alt="header" src={headerImage} />*/}
-      </HeaderImage>
-      <h1>This is the front end for the Cook Meister app</h1>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<SearchPage />} />
