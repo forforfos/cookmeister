@@ -1,3 +1,5 @@
+require 'cookmeister/elasticsearch/index'
+
 class Recipe < ApplicationRecord
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
@@ -47,9 +49,8 @@ class Recipe < ApplicationRecord
     end
   end
 
-  def self.elasticsearch_create_index
-    __elasticsearch__.create_index!
-    import
+  def self.elasticsearch_create_index(force = false)
+    Cookmeister::ElasticSearch::Index.create_index force
     __elasticsearch__.import
   end
 
