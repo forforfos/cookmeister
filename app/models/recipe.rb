@@ -50,6 +50,7 @@ class Recipe < ApplicationRecord
   def self.elasticsearch_create_index
     __elasticsearch__.create_index!
     import
+    __elasticsearch__.import
   end
 
   def self.search(ingredients)
