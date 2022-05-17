@@ -1,4 +1,3 @@
-require 'elasticsearch/extensions/test/cluster'
 require 'cookmeister/elasticsearch/index'
 
 RSpec.configure do |config|
@@ -14,16 +13,6 @@ RSpec.configure do |config|
 
   # Start an in-memory cluster for Elasticsearch as needed
   config.before :suite do
-    # Elasticsearch::Extensions::Test::Cluster.start(port: 9250, number_of_nodes: 1, timeout: 120)
-
     Cookmeister::ElasticSearch::Index.create_index(false, true)
-  end
-
-  # Stop elasticsearch cluster after test run
-  config.after :suite do
-    Ingredient.delete_all
-    # if Elasticsearch::Extensions::Test::Cluster.running?(on: 9250, number_of_nodes: 1)
-    #   Elasticsearch::Extensions::Test::Cluster.stop(port: 9250, number_of_nodes: 1)
-    # end
   end
 end
