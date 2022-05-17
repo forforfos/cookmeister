@@ -4,9 +4,9 @@ development:
   password: <%= Rails.application.credentials.es_pass %>
 
 test:
-  host: localhost
-  port: 9250
-  scheme: http
+  cloud_id: <%= Rails.application.credentials.es_cloud_id %>
+  user: <%= Rails.application.credentials.es_user %>
+  password: <%= Rails.application.credentials.es_pass %>
 
 production:
   cloud_id: <%= Rails.application.credentials.es_cloud_id %>
