@@ -33,7 +33,7 @@ or by creating a free account in the cloud solution that elasticsearch provides 
 
 In either case, **keep the credentials** for the connection to the backend. You will need them soon.
 
-### Backend configuration <a name="Backend"></a>
+### Backend configuration
 Clone the repo.
 
 Enter the cloned directory.
