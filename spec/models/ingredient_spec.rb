@@ -14,8 +14,7 @@ RSpec.describe 'Ingredient', type: :model do
   describe 'validations' do
     describe 'name' do
       context 'when it is empty' do
-        before { @ingredient = Ingredient.new(name: '') }
-        subject { @ingredient }
+        subject { Ingredient.new(name: '') }
 
         it { is_expected.to be_invalid }
       end

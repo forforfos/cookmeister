@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe 'Recipe', type: :model do
   before(:all) do
     @recipe = build :recipe
-    p @recipe.ingredients
   end
 
   subject { @recipe }
